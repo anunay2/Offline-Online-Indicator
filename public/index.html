@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>User Online Simulator</title></head>
+<script src="/socket.io/socket.io.js"></script>
+<body>
+    <form action="">
+        <label for="userId"> user id :</label>
+        <input type="number" id="userId" name="userId">
+        <input type="button" value="send-heartbeat" onclick="sendHeartBeat()">
+    </form>
+    <script>
+            var socket = io.connect();
+
+            function sendHeartBeat(){
+                console.log("Sending heartbeat for userid: ".concat(document.getElementById("userId").value));
+                 socket.emit('HeartBeat',
+                    { userId: document.getElementById("userId").value ,
+                        timeStamp : Date.now()})
+            }
+
+    </script>
+</body>
+</html>
